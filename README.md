@@ -34,7 +34,7 @@ for i_episode in range(20):
     # Reset the environment
     observation = env.reset()
     for t in range(18000):
-        # Stochastic action inside the action_space box
+        # Stochastic action sample inside the action_space box
         action = env.action_space.sample()
         # Getting info from environment step simulation
         observation, reward, done, info = env.step(action)

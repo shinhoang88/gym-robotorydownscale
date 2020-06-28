@@ -1,0 +1,2 @@
+from gym_robotorydownscale.envs.robotorydownscale_env 
+import RobotorydownscaleEnv

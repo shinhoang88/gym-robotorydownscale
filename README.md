@@ -28,18 +28,21 @@ import gym_robotorydownscale
 import pybullet as p
 import pybullet_data
 
+# Initialize the OpenAI Gym environment
 env = gym.make('robotorydownscale-v0')
 for i_episode in range(20):
+    # Reset the environment
     observation = env.reset()
     for t in range(18000):
-
+        # Stochastic action inside the action_space box
         action = env.action_space.sample()
+        # Getting info from environment step simulation
         observation, reward, done, info = env.step(action)
         if done:
-            print("Episode finished after {} timesteps".format(t+1))
-            print(reward)
+            print("Episode finished after {} timesteps".format(t + 1))
             break
 env.close()
+
 ```
 - Author        : Phi Tien Hoang
 - E-mail        : phitien@skku.edu

@@ -10,7 +10,7 @@ import pybullet as p
 import pybullet_data
 import numpy as np
 
-MAX_ESPISODE_LEN = 20 * 100
+MAX_ESPISODE_LEN = 10 * 1000
 
 # p.connect(p.GUI)
 # urdfRootPath = pybullet_data.getDataPath()
@@ -62,6 +62,16 @@ class RobotorydownscaleEnv(gym.Env):
         self.observation_space = spaces.Box(low=self.low_state,
                                             high=self.high_state,
                                             dtype=np.float32)
+
+        # Define the box boundary for the Action space
+        # Action [theta1_prime, ... , theta7_prime]
+        self.low_action = np.array(self.min_theta_prime,
+                                   dtype=np.float32)
+        self.high_action = np.array(self.max_theta_prime,
+                                    dtype=np.float32)
+        self.action_space = spaces.Box(low=self.low_action,
+                                       high=self.high_action,
+                                       dtype=np.float32)
 
     # Reset the environment
     def reset(self):
@@ -130,12 +140,12 @@ class RobotorydownscaleEnv(gym.Env):
                                          solver=p.IK_DLS)
 
         # Velocity control
-        # Action is assigned as Observation = [tt1, tt2, ..., tt7, tt_dot1, tt_dot2, ..., tt_dot7]
+        # Action = [tt_dot1, tt_dot2, ..., tt_dot7]
         for i in range(numJoints):
             p.setJointMotorControl2(bodyUniqueId=self.downscaleUid,
                                     jointIndex=i,
                                     controlMode=p.VELOCITY_CONTROL,
-                                    targetVelocity=action[7 + i],
+                                    targetVelocity=action[i],
                                     velocityGain=1)
         # Step simulation
         p.stepSimulation()

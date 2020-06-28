@@ -1,4 +1,4 @@
-# OpenAI Gym Robotory SKKU 7-DOF manipulator downscale version
+## OpenAI Gym Environment for SKKU Robotory 7-DOF manipulator downscale version
 There are 2 method for installing our Deep RL OpenAI Gym environment
 ### 1) Install directly:
 - Download gym-robotorydownscale

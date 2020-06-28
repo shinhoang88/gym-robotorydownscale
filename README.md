@@ -21,6 +21,26 @@ git clone https://github.com/shinhoang88/downscale.git
 ```python
 sudo cp -r /home/username/downscale/ /home/username/anaconda3/lib/python3.7/site-packages/pybullet_data/
 ```
+## Test the environment working:
+```python
+import gym
+import gym_robotorydownscale
+import pybullet as p
+import pybullet_data
+
+env = gym.make('robotorydownscale-v0')
+for i_episode in range(20):
+    observation = env.reset()
+    for t in range(18000):
+
+        action = env.action_space.sample()
+        observation, reward, done, info = env.step(action)
+        if done:
+            print("Episode finished after {} timesteps".format(t+1))
+            print(reward)
+            break
+env.close()
+```
 - Author        : Phi Tien Hoang
 - E-mail        : phitien@skku.edu
 - Organization  : Robotory-SKKU-S.Korea

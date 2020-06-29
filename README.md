@@ -1,3 +1,7 @@
+### Prerequisites:
+* OpenAI Gym: https://github.com/openai/gym
+* PyBullet: https://github.com/bulletphysics/bullet3
+* Anaconda: https://phoenixnap.com/kb/how-to-install-anaconda-ubuntu-18-04-or-20-04
 ## I) OpenAI Gym Environment for SKKU Robotory 7-DOF manipulator downscale version
 There are 2 method for installing our Deep RL OpenAI Gym environment
 ### 1) Install directly:

@@ -1,3 +1,4 @@
+# A Deep Reinforcement Learning Framework (simulation) with OpenAI-Gym and PyBullet Environment for the 7-DOF manipulator downscale version from Robotory - SKKU 
 ### Prerequisites:
 * OpenAI Gym: https://github.com/openai/gym
 * PyBullet: https://github.com/bulletphysics/bullet3

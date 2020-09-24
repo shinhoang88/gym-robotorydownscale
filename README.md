@@ -1,7 +1,7 @@
 ### Prerequisites:
 * OpenAI Gym: https://github.com/openai/gym
 * PyBullet: https://github.com/bulletphysics/bullet3
-* Anaconda: https://phoenixnap.com/kb/how-to-install-anaconda-ubuntu-18-04-or-20-04
+* Virtualenv or Anaconda: https://phoenixnap.com/kb/how-to-install-anaconda-ubuntu-18-04-or-20-04
 ## I) OpenAI Gym Environment for SKKU Robotory 7-DOF manipulator downscale version
 There are 2 method for installing our Deep RL OpenAI Gym environment
 ### 1) Install directly:
@@ -21,9 +21,9 @@ pip3 install -e .
 ```python
 git clone https://github.com/shinhoang88/downscale.git
 ```
-### 2) Copy it into anaconda3, pybullet_data workspace:
+### 2) Copy it into your virtualenv or anaconda3 python/pybullet_data workspace, for example:
 ```python
-sudo cp -r /home/username/downscale/ /home/username/anaconda3/lib/python3.7/site-packages/pybullet_data/
+sudo cp -r /home/username/downscale/ /home/username/rospython3_ws/rospy3env/lib/python3.6/site-packages/pybullet_data/
 ```
 ## III) Test the environment working:
 ```python

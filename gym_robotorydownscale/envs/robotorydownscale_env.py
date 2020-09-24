@@ -3,7 +3,7 @@
 # Observation       :[qT qdotT p_goalT p_eeT] belongs to R20
 # Action            :[tauqT] belongs to R7  (manipulator torque vector including control and friction compensate torque)
 # Task Modeling     :Manipulator track the arbitrary target from the initial configuration w.r.t [-0.4, -0.65, 0.1]
-#                   and orientation [0., -math.pi, math.pi]
+#                   and orientation [0., -math.pi, math.pi] AND MINIMIZE THE TORQUE
 # Environment ver   :env = gym.make("robotorydownscale-v2")
 # Author            :Phi Tien Hoang
 # Date              :2020/08/08
@@ -422,15 +422,17 @@ class RobotorydownscaleEnv(gym.Env):
         self.cartesian_distance = np.linalg.norm(self.target_obj - np.array(self.state_robot), 2)
         self.cartesian_2D = np.linalg.norm(target_2D - current_2D, 2)
         self.torque_norm = np.linalg.norm(np.array(joint_torques), 2)
-        # if stepnum < 600000:
-        xy_threshold = self.cartesian_2D_threshold_lv2
-        z_threshold = self.z_distance_threshold_lv2
-        # if stepnum < 800000:
-        #     xy_threshold = self.cartesian_2D_threshold_lv1
-        #     z_threshold = self.z_distance_threshold_lv1
-        # else:
-        #     xy_threshold = self.cartesian_2D_threshold_lv2
-        #     z_threshold = self.z_distance_threshold_lv2
+        
+        # xy_threshold = self.cartesian_2D_threshold_lv2
+        # z_threshold = self.z_distance_threshold_lv2
+        
+        # Gradually narrow down the Learning Termination Conditions based on the current number of episode:
+        if stepnum < 800000:
+            xy_threshold = self.cartesian_2D_threshold_lv1
+            z_threshold = self.z_distance_threshold_lv1
+        else:
+            xy_threshold = self.cartesian_2D_threshold_lv2
+            z_threshold = self.z_distance_threshold_lv2
 
         if self.cartesian_distance < xy_threshold and z_distance < z_threshold:
             done = True
